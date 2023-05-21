@@ -1,0 +1,13 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ignite",
+        "description": "Ignite course from RocketSeat",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Pedroso",
+            "url": "https://www.linkedin.com/in/guto36/",
+            "email": "pedroso36@hotmail.com"
+        }
+    }
+}
