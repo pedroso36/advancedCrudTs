@@ -1,7 +1,11 @@
 {
     "type": "mysql",
+    "port": 3306,
     "host": "localhost",
     "username": "root",
     "password": "root",
-    "database": "ignite"
+    "database": "ignite",
+    "cli": {
+        "migrationDir": "./src/database/migrations"
+    }
 }
