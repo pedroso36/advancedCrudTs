@@ -1,17 +1,19 @@
 version: '3.7'
 
 services:
-  database_ignite:
+  database_ignite: 
     image: mysql:8.0.29
     container_name: database_ignite
     restart: always
+    ports:
+      - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: ''
-      MYSQL_DATABASE: 'ignite_database'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_ROOT_PASSWORD: 'root'
+        MYSQL_DATABASE: 'ignite_database'
     volumes:
-      - pgdata:/var/lib/mysql
-    network_mode: host
+      - data:/var/lib/mysql
+
   app:
     build: .
     container_name: ignite
@@ -19,8 +21,8 @@ services:
       - "3333:3333"
     volumes:
       - .:/usr/app
-    network_mode: host
-
+    depends_on:
+        - database_ignite
 volumes:
-  pgdata:
+  data:
     driver: local
