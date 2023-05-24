@@ -1,4 +1,10 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {
+    MigrationInterface,
+    QueryRunner,
+    Table,
+    TableForeignKey,
+    TableIndex,
+} from "typeorm";
 
 export class CreateCategories1684808333352 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
@@ -25,6 +31,24 @@ export class CreateCategories1684808333352 implements MigrationInterface {
                         default: "now()",
                     },
                 ],
+            })
+        );
+
+        await queryRunner.createForeignKey(
+            "categories",
+            new TableForeignKey({
+                columnNames: ["car_id"],
+                referencedColumnNames: ["id"],
+                referencedTableName: "Cars",
+                onDelete: "CASCADE",
+            })
+        );
+
+        await queryRunner.createIndex(
+            "categories",
+            new TableIndex({
+                name: "idx_categories_name",
+                columnNames: ["name", "id"],
             })
         );
     }
