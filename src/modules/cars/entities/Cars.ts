@@ -2,9 +2,7 @@ import {
     Column,
     CreateDateColumn,
     Entity,
-    JoinColumn,
     OneToMany,
-    OneToOne,
     PrimaryColumn,
     UpdateDateColumn,
 } from "typeorm";
