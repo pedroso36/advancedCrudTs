@@ -1,4 +1,5 @@
 {
+    "entities": ["./src/modules/**/entities/*.ts"],
     "type": "mysql",
     "host": "localhost",
     "port": 3306,

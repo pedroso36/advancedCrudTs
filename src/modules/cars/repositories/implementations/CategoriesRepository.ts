@@ -1,3 +1,5 @@
+import { Repository, getRepository } from "typeorm";
+
 import { Category } from "../../entities/Category";
 import {
     ICategoriesRepository,
@@ -5,43 +7,34 @@ import {
 } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
-    private categories: Category[];
+    private repository: Repository<Category>;
 
-    // eslint-disable-next-line no-use-before-define
-    private static INSTANCE: CategoriesRepository;
-
-    private constructor() {
-        this.categories = [];
+    constructor() {
+        this.repository = getRepository(Category);
     }
 
-    public static getInstance(): CategoriesRepository {
-        if (!CategoriesRepository.INSTANCE) {
-            CategoriesRepository.INSTANCE = new CategoriesRepository();
-        }
+    // public static getInstance(): CategoriesRepository {
+    //     if (!CategoriesRepository.INSTANCE) {
+    //         CategoriesRepository.INSTANCE = new CategoriesRepository();
+    //     }
 
-        return CategoriesRepository.INSTANCE;
+    //     return CategoriesRepository.INSTANCE;
+    // }
+
+    async create({ description, name }: ICreateCategoryDTO): Promise<void> {
+        const category = this.repository.create({ description, name });
+
+        await this.repository.save(category);
     }
 
-    create({ description, name }: ICreateCategoryDTO): void {
-        const category = new Category();
+    async list(): Promise<Category[]> {
+        const category = await this.repository.find();
 
-        Object.assign(category, {
-            name,
-            description,
-            created_at: new Date(),
-        });
-
-        this.categories.push(category);
+        return category;
     }
 
-    list(): Category[] {
-        return this.categories;
-    }
-
-    findByName(name: string): Category {
-        const category = this.categories.find(
-            (category) => category.name === name
-        );
+    async findByName(name: string): Promise<Category> {
+        const category = await this.repository.findOne({ name });
         return category;
     }
 }
