@@ -1,10 +1,4 @@
-import {
-    MigrationInterface,
-    QueryRunner,
-    Table,
-    TableForeignKey,
-    TableIndex,
-} from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableIndex } from "typeorm";
 
 export class CreateCategories1684808333352 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
@@ -14,7 +8,7 @@ export class CreateCategories1684808333352 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "int",
+                        type: "uuid",
                         isPrimary: true,
                     },
                     {

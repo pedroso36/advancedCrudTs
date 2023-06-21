@@ -7,8 +7,6 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Cars } from "./Cars";
-
 @Entity("categories")
 class Category {
     @PrimaryColumn()
@@ -22,9 +20,6 @@ class Category {
 
     @CreateDateColumn()
     created_at: Date;
-
-    @ManyToOne(() => Cars, (cars) => cars.category)
-    cars: Cars;
 
     constructor() {
         if (!this.id) {

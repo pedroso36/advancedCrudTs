@@ -2,13 +2,10 @@ import {
     Column,
     CreateDateColumn,
     Entity,
-    OneToMany,
     PrimaryColumn,
     UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
-
-import { Category } from "./Category";
 
 @Entity("cars")
 class Cars {
@@ -29,9 +26,6 @@ class Cars {
 
     @Column()
     brand: string;
-
-    @OneToMany(() => Category, (category) => category.cars)
-    category: Category[];
 
     @CreateDateColumn()
     created_at: Date;
