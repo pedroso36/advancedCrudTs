@@ -27,7 +27,7 @@ export class CreateCategories1684808333352 implements MigrationInterface {
                 ],
             })
         );
-        // Todo: Add dropForeignKey and index
+
         await queryRunner.createIndex(
             "categories",
             new TableIndex({
