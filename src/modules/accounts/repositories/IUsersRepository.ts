@@ -1,7 +1,7 @@
 import { ICreateUsersDTO } from "../dtos/ICreateuserDTO";
 
-interface IUserRepository {
+interface IUsersRepository {
     create(data: ICreateUsersDTO): Promise<void>;
 }
 
-export { IUserRepository };
+export { IUsersRepository };
