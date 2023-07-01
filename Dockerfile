@@ -1,13 +1,14 @@
-FROM node
+FROM node:16.13
 
 WORKDIR /usr/app
 
 COPY package.json ./
+COPY yarn.lock ./
 
-RUN npm install 
+RUN yarn install 
 
 COPY . .
 
 EXPOSE 3333
 
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "start:dev"]
